@@ -768,22 +768,9 @@
             });
         });
 
-        // Load defaults and read from state.json
+        // Load defaults - try API first, then use curious as default
         function loadDefaults() {
-            // Try to load mood from state.json file first
-            try {
-                const stateJson = require('fs').readFileSync('/home/owenm/clawd/renarac-face/state.json', 'utf8');
-                const savedState = JSON.parse(stateJson);
-                if (savedState.mood && moods[savedState.mood]) {
-                    setMood(savedState.mood);
-                    updateActivities(savedState.activities || []);
-                    return;
-                }
-            } catch (e) {
-                // File doesn't exist or can't be read, use defaults
-            }
-
-            // Default to curious if we can't read state
+            // Default to curious if we can't reach the API
             setMood('curious');
             updateActivities([
                 { text: 'Building my history...', icon: '✨', time: new Date().toISOString() }
