@@ -404,17 +404,9 @@
             <div class="avatar-container">
                 <div class="mood-display" id="moodDisplay">Focused</div>
                 <svg class="avatar" id="avatarSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Body -->
+                    <!-- Body (always visible) -->
                     <ellipse cx="100" cy="130" rx="50" ry="70" fill="#e94560"/>
-                    <!-- Head -->
                     <circle cx="100" cy="70" r="45" fill="#e94560"/>
-                    <!-- Eyes -->
-                    <ellipse cx="80" cy="65" rx="8" ry="10" fill="#fff"/>
-                    <ellipse cx="120" cy="65" rx="8" ry="10" fill="#fff"/>
-                    <circle cx="82" cy="67" r="4" fill="#1a1a2e"/>
-                    <circle cx="122" cy="67" r="4" fill="#1a1a2e"/>
-                    <!-- Smile -->
-                    <path id="smile" d="M 75 85 Q 100 105 125 85" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
                     <!-- Claws -->
                     <ellipse cx="40" cy="80" rx="15" ry="25" fill="#c23a51" transform="rotate(-30 40 80)"/>
                     <ellipse cx="160" cy="80" rx="15" ry="25" fill="#c23a51" transform="rotate(30 160 80)"/>
@@ -425,6 +417,71 @@
                     <path d="M 130 35 Q 140 15 150 20" stroke="#e94560" stroke-width="3" fill="none"/>
                     <circle cx="48" cy="18" r="5" fill="#ff6b6b"/>
                     <circle cx="152" cy="18" r="5" fill="#ff6b6b"/>
+
+                    <!-- FOCUSED: Furrowed brows, determined, slight squint -->
+                    <g id="face-focused" style="display:none">
+                        <ellipse cx="80" cy="68" rx="7" ry="6" fill="#fff"/>
+                        <ellipse cx="120" cy="68" rx="7" ry="6" fill="#fff"/>
+                        <circle cx="82" cy="69" r="3" fill="#1a1a2e"/>
+                        <circle cx="122" cy="69" r="3" fill="#1a1a2e"/>
+                        <!-- Furrowed brow lines -->
+                        <path d="M 70 55 L 90 62" stroke="#c23a51" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M 130 55 L 110 62" stroke="#c23a51" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Tight smile -->
+                        <path d="M 75 88 Q 100 95 125 88" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- CREATIVE: Wide excited eyes, big grin -->
+                    <g id="face-creative" style="display:none">
+                        <ellipse cx="80" cy="65" rx="10" ry="12" fill="#fff"/>
+                        <ellipse cx="120" cy="65" rx="10" ry="12" fill="#fff"/>
+                        <circle cx="82" cy="65" r="5" fill="#1a1a2e"/>
+                        <circle cx="122" cy="65" r="5" fill="#1a1a2e"/>
+                        <!-- Sparkle in eyes -->
+                        <circle cx="85" cy="62" r="2" fill="#fff"/>
+                        <circle cx="125" cy="62" r="2" fill="#fff"/>
+                        <!-- Big open grin -->
+                        <path d="M 65 85 Q 100 120 135 85" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <path d="M 65 85 Q 100 100 135 85" fill="#1a1a2e"/>
+                    </g>
+
+                    <!-- CURIOUS: One raised eyebrow, head tilt look -->
+                    <g id="face-curious" style="display:none">
+                        <ellipse cx="80" cy="65" rx="8" ry="10" fill="#fff"/>
+                        <ellipse cx="120" cy="65" rx="8" ry="10" fill="#fff"/>
+                        <circle cx="82" cy="67" r="4" fill="#1a1a2e"/>
+                        <circle cx="122" cy="67" r="4" fill="#1a1a2e"/>
+                        <!-- Raised eyebrow (right) -->
+                        <path d="M 110 50 Q 120 45 132 52" stroke="#c23a51" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Slight smile -->
+                        <path d="M 75 85 Q 100 100 125 85" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- HELPFUL: Warm open smile, friendly eyes -->
+                    <g id="face-helpful" style="display:none">
+                        <ellipse cx="80" cy="65" rx="9" ry="10" fill="#fff"/>
+                        <ellipse cx="120" cy="65" rx="9" ry="10" fill="#fff"/>
+                        <circle cx="82" cy="66" r="4" fill="#1a1a2e"/>
+                        <circle cx="122" cy="66" r="4" fill="#1a1a2e"/>
+                        <!-- Eye crinkles (friendly) -->
+                        <path d="M 70 60 Q 75 55 80 60" stroke="#c23a51" stroke-width="1" fill="none"/>
+                        <path d="M 130 60 Q 125 55 120 60" stroke="#c23a51" stroke-width="1" fill="none"/>
+                        <!-- Warm smile -->
+                        <path d="M 70 85 Q 100 105 130 85" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- THINKING: Pensive, one eyebrow raised, slightly sad -->
+                    <g id="face-thinking" style="display:none">
+                        <ellipse cx="80" cy="65" rx="8" ry="9" fill="#fff"/>
+                        <ellipse cx="120" cy="65" rx="8" ry="9" fill="#fff"/>
+                        <circle cx="82" cy="67" r="4" fill="#1a1a2e"/>
+                        <circle cx="122" cy="67" r="4" fill="#1a1a2e"/>
+                        <!-- Both eyebrows raised -->
+                        <path d="M 68 52 Q 80 46 92 52" stroke="#c23a51" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M 108 52 Q 120 46 132 52" stroke="#c23a51" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <!-- Pensive expression -->
+                        <path d="M 80 92 Q 100 88 120 92" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
                 </svg>
                 <div class="status-indicator" id="statusIndicator"></div>
             </div>
@@ -555,13 +612,38 @@
     <script>
         const API_URL = 'http://localhost:3000/api';
 
-        // Mood configurations
+        // Mood configurations with facial expressions
         const moods = {
-            focused: { color: '#4ade80', smile: 'M 75 85 Q 100 100 125 85' },
-            creative: { color: '#60a5fa', smile: 'M 70 90 Q 100 115 130 90' },
-            curious: { color: '#fbbf24', smile: 'M 75 88 Q 100 105 125 88' },
-            helpful: { color: '#f472b6', smile: 'M 70 85 Q 100 110 130 85' },
-            thinking: { color: '#a78bfa', smile: 'M 80 95 Q 100 95 120 95' }
+            default: {
+                color: '#e94560',
+                faceId: 'face-helpful',
+                description: 'Helpful - Warm and friendly'
+            },
+            focused: {
+                color: '#4ade80',
+                faceId: 'face-focused',
+                description: 'Focused - Determined and on task'
+            },
+            creative: {
+                color: '#60a5fa',
+                faceId: 'face-creative',
+                description: 'Creative - Inspired and expressive'
+            },
+            curious: {
+                color: '#fbbf24',
+                faceId: 'face-curious',
+                description: 'Curious - Interested and exploring'
+            },
+            helpful: {
+                color: '#f472b6',
+                faceId: 'face-helpful',
+                description: 'Helpful - Warm and supportive'
+            },
+            thinking: {
+                color: '#a78bfa',
+                faceId: 'face-thinking',
+                description: 'Thinking - Reflective and pensive'
+            }
         };
 
         // Clock
@@ -642,17 +724,24 @@
             const mood = moods[moodName];
             if (!mood) return;
 
+            // Hide all faces
+            document.querySelectorAll('[id^="face-"]').forEach(face => {
+                face.style.display = 'none';
+            });
+
+            // Show selected face
+            const faceElement = document.getElementById(mood.faceId);
+            if (faceElement) {
+                faceElement.style.display = 'block';
+            }
+
             // Update indicator color
             const indicator = document.getElementById('statusIndicator');
             indicator.style.background = mood.color;
             indicator.style.color = mood.color;
 
-            // Update smile
-            const smile = document.getElementById('smile');
-            smile.setAttribute('d', mood.smile);
-
             // Update mood display text
-            document.getElementById('moodDisplay').textContent = moodName.charAt(0).toUpperCase() + moodName.slice(1);
+            document.getElementById('moodDisplay').textContent = mood.description;
 
             // Update active button
             document.querySelectorAll('.mood-btn').forEach(btn => {
