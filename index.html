@@ -662,8 +662,22 @@
                 const state = await res.json();
                 updateDisplay(state);
             } catch (err) {
-                console.log('API not available, using defaults');
-                loadDefaults();
+                // API not available - don't overwrite mood with default
+                console.log('API not available, keeping current mood');
+            }
+        }
+
+        // Initial load - set to curious only if we can't reach API
+        async function initialLoad() {
+            try {
+                const res = await fetch(`${API_URL}/state`);
+                const state = await res.json();
+                updateDisplay(state);
+            } catch (err) {
+                setMood('curious');
+                updateActivities([
+                    { text: 'Building my history...', icon: '✨', time: new Date().toISOString() }
+                ]);
             }
         }
 
@@ -768,17 +782,8 @@
             });
         });
 
-        // Load defaults - try API first, then use curious as default
-        function loadDefaults() {
-            // Default to curious if we can't reach the API
-            setMood('curious');
-            updateActivities([
-                { text: 'Building my history...', icon: '✨', time: new Date().toISOString() }
-            ]);
-        }
-
         // Initial load
-        fetchState();
+        initialLoad();
 
         // Refresh every 30 seconds
         setInterval(fetchState, 30000);
