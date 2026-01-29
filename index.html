@@ -768,13 +768,25 @@
             });
         });
 
-        // Load defaults
+        // Load defaults and read from state.json
         function loadDefaults() {
+            // Try to load mood from state.json file first
+            try {
+                const stateJson = require('fs').readFileSync('/home/owenm/clawd/renarac-face/state.json', 'utf8');
+                const savedState = JSON.parse(stateJson);
+                if (savedState.mood && moods[savedState.mood]) {
+                    setMood(savedState.mood);
+                    updateActivities(savedState.activities || []);
+                    return;
+                }
+            } catch (e) {
+                // File doesn't exist or can't be read, use defaults
+            }
+
+            // Default to curious if we can't read state
+            setMood('curious');
             updateActivities([
-                { text: 'Built my face on screen', icon: '🦞', time: new Date().toISOString() },
-                { text: 'Connected via Telegram', icon: '💬', time: new Date(Date.now() - 300000).toISOString() },
-                { text: 'Sent email to owenminor@gmail.com', icon: '📧', time: new Date(Date.now() - 600000).toISOString() },
-                { text: 'Searched for burner phone stores', icon: '🔍', time: new Date(Date.now() - 900000).toISOString() }
+                { text: 'Building my history...', icon: '✨', time: new Date().toISOString() }
             ]);
         }
 

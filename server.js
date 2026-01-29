@@ -32,6 +32,18 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
+    // CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        res.writeHead(200);
+        res.end();
+        return;
+    }
+
     // API endpoints
     if (req.url === '/api/state' && req.method === 'GET') {
         const state = JSON.parse(fs.readFileSync(STATE_FILE));
