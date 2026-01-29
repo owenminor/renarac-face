@@ -64,7 +64,7 @@ const server = http.createServer((req, res) => {
             state.activities.unshift({ text, icon, time: new Date().toISOString() });
             state.activities = state.activities.slice(0, 10); // Keep last 10
             state.lastActivity = new Date().toISOString();
-            fs.stats = { ...state.stats, ideas: state.stats.ideas + 1 };
+            state.stats = { ...state.stats, ideas: (state.stats.ideas || 0) + 1 };
             fs.writeFileSync(STATE_FILE, JSON.stringify(state, null, 2));
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify(state));

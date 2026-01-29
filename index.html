@@ -20,9 +20,47 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 2rem;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(233, 69, 96, 0.2);
+            border-color: #e94560;
+            color: #e94560;
+        }
+
+        .clock {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #888;
         }
 
         /* Header */
@@ -30,9 +68,7 @@
             display: flex;
             align-items: center;
             gap: 2rem;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
         }
 
         .avatar-container {
@@ -91,6 +127,10 @@
             opacity: 1;
         }
 
+        .header-info {
+            flex: 1;
+        }
+
         .header-info h1 {
             font-size: 2.5rem;
             margin-bottom: 0.3rem;
@@ -120,6 +160,7 @@
             font-weight: bold;
             color: #e94560;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .stat-value:hover {
@@ -146,15 +187,31 @@
             border: 1px solid rgba(255,255,255,0.08);
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
         .section-title {
             font-size: 1rem;
             color: #888;
-            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .section-link {
+            font-size: 0.8rem;
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        .section-link:hover {
+            text-decoration: underline;
         }
 
         /* Activity Feed */
@@ -172,6 +229,7 @@
             background: rgba(255,255,255,0.02);
             border-radius: 10px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .activity-item:hover {
@@ -213,6 +271,8 @@
             border: 1px solid rgba(255,255,255,0.05);
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .capability:hover {
@@ -229,8 +289,8 @@
         .mood-selector {
             display: flex;
             gap: 0.5rem;
-            margin-bottom: 1rem;
             flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
 
         .mood-btn {
@@ -248,6 +308,31 @@
             background: rgba(233, 69, 96, 0.2);
             border-color: #e94560;
             color: #e94560;
+        }
+
+        /* Weather Widget */
+        .weather-widget {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .weather-icon {
+            font-size: 2.5rem;
+        }
+
+        .weather-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .weather-info p {
+            font-size: 0.85rem;
+            color: #888;
         }
 
         /* Personality */
@@ -293,11 +378,27 @@
             .quick-stats {
                 justify-content: center;
             }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">🏠 Home</a>
+                <a href="skills.html" class="nav-link">💪 Skills</a>
+                <a href="timeline.html" class="nav-link">📜 Timeline</a>
+                <a href="memory.html" class="nav-link">🧠 Memory</a>
+                <a href="settings.html" class="nav-link">⚙️ Settings</a>
+            </div>
+            <div class="clock" id="clock">--:--:--</div>
+        </nav>
+
         <!-- Header -->
         <header class="header">
             <div class="avatar-container">
@@ -332,13 +433,13 @@
                 <h1>Renarac</h1>
                 <p class="tagline">AI Assistant | Building My Identity</p>
                 <div class="quick-stats">
-                    <div class="stat">
+                    <div class="stat" onclick="location.href='skills.html'">
                         <div class="stat-value" id="skillsCount">6</div>
                         <div class="stat-label">Skills</div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-value" id="emailsCount">3</div>
-                        <div class="stat-label">Emails</div>
+                    <div class="stat" onclick="location.href='memory.html'">
+                        <div class="stat-value" id="memoriesCount">7</div>
+                        <div class="stat-label">Memories</div>
                     </div>
                     <div class="stat">
                         <div class="stat-value" id="ideasCount">0</div>
@@ -352,7 +453,10 @@
         <div class="main-grid">
             <!-- Activity Feed -->
             <div class="section">
-                <h2 class="section-title">📜 Recent Activity</h2>
+                <div class="section-header">
+                    <h2 class="section-title">📜 Recent Activity</h2>
+                    <a href="timeline.html" class="section-link">View All →</a>
+                </div>
                 <div class="activity-list" id="activityList">
                     <div class="activity-item">
                         <span class="activity-icon">🔄</span>
@@ -362,50 +466,68 @@
                 </div>
             </div>
 
-            <!-- Capabilities & Mood -->
-            <div class="section">
-                <h2 class="section-title">🎭 Current Mood</h2>
-                <div class="mood-selector">
-                    <button class="mood-btn active" data-mood="focused" data-color="#4ade80">Focused</button>
-                    <button class="mood-btn" data-mood="creative" data-color="#60a5fa">Creative</button>
-                    <button class="mood-btn" data-mood="curious" data-color="#fbbf24">Curious</button>
-                    <button class="mood-btn" data-mood="helpful" data-color="#f472b6">Helpful</button>
-                    <button class="mood-btn" data-mood="thinking" data-color="#a78bfa">Thinking</button>
+            <!-- Right Column -->
+            <div>
+                <!-- Weather Widget -->
+                <div class="section">
+                    <h2 class="section-title">🌤️ My Location</h2>
+                    <div class="weather-widget">
+                        <span class="weather-icon">❄️</span>
+                        <div class="weather-info">
+                            <h3>Duluth, MN</h3>
+                            <p>28°F | Snow Possible</p>
+                        </div>
+                    </div>
                 </div>
 
-                <h2 class="section-title" style="margin-top: 1.5rem;">💪 Capabilities</h2>
-                <div class="capabilities-grid">
-                    <div class="capability">
-                        <span class="capability-icon">📧</span>
-                        <span>Gmail</span>
+                <!-- Mood Selector -->
+                <div class="section" style="margin-top: 1rem;">
+                    <h2 class="section-title">🎭 Current Mood</h2>
+                    <div class="mood-selector">
+                        <button class="mood-btn active" data-mood="focused" data-color="#4ade80">Focused</button>
+                        <button class="mood-btn" data-mood="creative" data-color="#60a5fa">Creative</button>
+                        <button class="mood-btn" data-mood="curious" data-color="#fbbf24">Curious</button>
+                        <button class="mood-btn" data-mood="helpful" data-color="#f472b6">Helpful</button>
+                        <button class="mood-btn" data-mood="thinking" data-color="#a78bfa">Thinking</button>
                     </div>
-                    <div class="capability">
-                        <span class="capability-icon">🌐</span>
-                        <span>Browser</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">💬</span>
-                        <span>Telegram</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">🔍</span>
-                        <span>Web Search</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">📁</span>
-                        <span>File System</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">💻</span>
-                        <span>Dev Tools</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">🧠</span>
-                        <span>Memory</span>
-                    </div>
-                    <div class="capability">
-                        <span class="capability-icon">🎯</span>
-                        <span>Tasks</span>
+                </div>
+
+                <!-- Capabilities -->
+                <div class="section" style="margin-top: 1rem;">
+                    <h2 class="section-title">💪 Capabilities</h2>
+                    <div class="capabilities-grid">
+                        <a href="skills.html" class="capability">
+                            <span class="capability-icon">📧</span>
+                            <span>Gmail</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">🌐</span>
+                            <span>Browser</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">💬</span>
+                            <span>Telegram</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">🔍</span>
+                            <span>Web Search</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">📁</span>
+                            <span>Files</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">💻</span>
+                            <span>Dev Tools</span>
+                        </a>
+                        <a href="memory.html" class="capability">
+                            <span class="capability-icon">🧠</span>
+                            <span>Memory</span>
+                        </a>
+                        <a href="#" class="capability">
+                            <span class="capability-icon">🎯</span>
+                            <span>Tasks</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -441,6 +563,15 @@
             helpful: { color: '#f472b6', smile: 'M 70 85 Q 100 110 130 85' },
             thinking: { color: '#a78bfa', smile: 'M 80 95 Q 100 95 120 95' }
         };
+
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('clock').textContent = time;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
         // Fetch state from API
         async function fetchState() {
@@ -484,7 +615,7 @@
                 return;
             }
 
-            list.innerHTML = activities.map(act => `
+            list.innerHTML = activities.slice(0, 5).map(act => `
                 <div class="activity-item">
                     <span class="activity-icon">${act.icon || '📌'}</span>
                     <span class="activity-text">${act.text}</span>

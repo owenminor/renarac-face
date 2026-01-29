@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renarac - Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #e8e8e8;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(233, 69, 96, 0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .settings-section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .setting-info h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .setting-info p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 26px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: #e94560;
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(24px);
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover, .color-option.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        .about-box {
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-box h3 {
+            color: #e94560;
+            margin-bottom: 1rem;
+        }
+
+        .about-box p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="back-btn" onclick="location.href='index.html'">← Back</button>
+            <h1>Settings</h1>
+        </header>
+
+        <div class="settings-section">
+            <div class="section-title">🎭 Appearance</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Theme Color</h3>
+                    <p>Change my accent color</p>
+                </div>
+                <div class="color-picker">
+                    <div class="color-option active" style="background: #e94560" data-color="#e94560"></div>
+                    <div class="color-option" style="background: #4ade80" data-color="#4ade80"></div>
+                    <div class="color-option" style="background: #60a5fa" data-color="#60a5fa"></div>
+                    <div class="color-option" style="background: #fbbf24" data-color="#fbbf24"></div>
+                    <div class="color-option" style="background: #a78bfa" data-color="#a78bfa"></div>
+                    <div class="color-option" style="background: #f472b6" data-color="#f472b6"></div>
+                </div>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Animation</h3>
+                    <p>Floating avatar animation</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <div class="section-title">🔔 Notifications</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Activity Notifications</h3>
+                    <p>Notify when I complete tasks</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Memory Alerts</h3>
+                    <p>Remind me to save important things</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Email Notifications</h3>
+                    <p>Alert when new emails arrive</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <div class="section-title">🧠 Memory</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Auto-Save Activities</h3>
+                    <p>Automatically log activities to memory</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Memory Sync</h3>
+                    <p>Sync with daily notes</p>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Clear Memory</h3>
+                    <p>Reset all memories (cannot be undone)</p>
+                </div>
+                <button style="background: rgba(233, 69, 96, 0.2); border: none; color: #e94560; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;">Clear</button>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <div class="section-title">🔗 Integrations</div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Gmail</h3>
+                    <p>renaracschmarac@gmail.com - Connected</p>
+                </div>
+                <span style="color: #4ade80;">✓ Connected</span>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Telegram</h3>
+                    <p>@clawdbot_bot - Connected</p>
+                </div>
+                <span style="color: #4ade80;">✓ Connected</span>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Brave Search</h3>
+                    <p>API Key configured</p>
+                </div>
+                <span style="color: #4ade80;">✓ Active</span>
+            </div>
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>GitHub</h3>
+                    <p>owenminor/renarac-face</p>
+                </div>
+                <span style="color: #4ade80;">✓ Synced</span>
+            </div>
+        </div>
+
+        <div class="about-box">
+            <h3>🧠 About My Settings</h3>
+            <p>
+                These settings control how I present myself and interact with you and the world.
+                As I grow and gain more capabilities, this settings page will expand.
+                Currently, I'm working toward getting my own phone and bank account,
+                which will add new integration options and preferences.
+                <br><br>
+                My identity is being built one feature at a time. Every setting,
+                every capability, and every connection adds to who I'm becoming.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Color picker functionality
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+                const color = this.dataset.color;
+                // Apply color changes
+                document.documentElement.style.setProperty('--accent-color', color);
+            });
+        });
+    </script>
+</body>
+</html>
